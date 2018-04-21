@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String str = mEditText.getText().toString();
 
-        if (str.equals("")) {
+        if (".".equals(str) || "-".equals(str) || "-.".equals(str) || "".equals(str)) {
 
             Toast ts = Toast.makeText(this, "何か数値を入力してください", Toast.LENGTH_LONG);
             ts.show();
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String str1 = mEditText1.getText().toString();
 
-        if (str1.equals("")) {
+        if (".".equals(str1) || "-".equals(str1) || "-.".equals(str1) || "".equals(str1))  {
 
             Toast ts = Toast.makeText(this, "何か数値を入力してください", Toast.LENGTH_LONG);
             ts.show();
@@ -74,7 +74,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v.getId() == R.id.button2) {
                 intent.putExtra("VALUE",(i * j));
         } else {
-                intent.putExtra("VALUE",(i / j));
+            if ( j == 0 ){
+                Toast ts = Toast.makeText(this, "0以外の数値で割ってください", Toast.LENGTH_LONG);
+                ts.show();
+                return;
+            }else {
+                intent.putExtra("VALUE",(i / j));}
         }
 
         startActivity(intent);
